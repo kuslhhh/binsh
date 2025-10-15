@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { getBin } from '@/services/api';
 import Link from 'next/link';
 
 export default function BinPage() {
+   const router = useRouter()
    const params = useParams();
    const slug = params.slug as string;
    const [binData, setBinData] = useState<any>(null);
@@ -55,12 +56,19 @@ export default function BinPage() {
             <div className="text-center max-w-md">
                <h2 className="text-[#ff6b6b] text-2xl font-semibold mb-3">Error Loading Bin</h2>
                <p className="text-[#9b9b9b] mb-6">{error}</p>
-               <Link
-                  href="/"
-                  className="inline-block bg-white text-[#0f0f0f] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-gray-200 transition-colors"
+               {/* <Link
+                     href="/"
+                     className="inline-block bg-white text-[#0f0f0f] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-gray-200 transition-colors"
+                  >
+                     Create New Bin
+                  </Link> */}
+               <button
+                  onClick={() => router.push('/')}
+                  className="flex items-center border-none cursor-pointer text-no-underline bg-white text-black h-12 text-[1.05rem] py-2 px-[1.2rem] font-semibold gap-[0.8rem] rounded-[15px] opacity-100 [font-variant-ligatures:none] animate-[fadein_0.3s_ease_forwards]"
                >
-                  Create New Bin
-               </Link>
+                  <span>+</span>
+                  New Bin
+               </button>
             </div>
          </div>
       );
@@ -68,20 +76,25 @@ export default function BinPage() {
 
    return (
       <div className="flex flex-col min-h-screen h-screen bg-[#0f0f0f] overflow-hidden">
-         {/* Header */}
          <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-6 sm:px-8 py-6 border-b border-dashed border-[#333] bg-[#0f0f0f]">
             <h1 className="text-2xl sm:text-3xl font-bold text-white break-words flex-1">
                {binData?.title || 'Untitled'}
             </h1>
-            <Link
+            {/* <Link
                href="/"
                className="bg-white text-[#0f0f0f] px-5 py-2.5 rounded-lg font-semibold text-sm whitespace-nowrap hover:bg-gray-200 transition-colors"
             >
                + New Bin
-            </Link>
+            </Link> */}
+            <button
+               onClick={() => router.push('/')}
+               className="flex items-center border-none cursor-pointer text-no-underline bg-white text-black h-12 text-[1.05rem] py-2 px-[1.2rem] font-semibold gap-[0.8rem] rounded-[15px] opacity-100 [font-variant-ligatures:none] animate-[fadein_0.3s_ease_forwards]"
+            >
+               <span>+</span>
+               New Bin
+            </button>
          </header>
 
-         {/* Meta Bar */}
          <div className="flex flex-wrap items-center gap-3 px-6 sm:px-8 py-3 border-b border-dashed border-[#333] bg-[#0a0a0a]">
             <span className="bg-[#1a3a4a] text-[#6eb5ff] text-xs font-bold tracking-wide px-3 py-1.5 rounded-md">
                {binData?.language?.toUpperCase() || 'PLAINTEXT'}
@@ -107,7 +120,6 @@ export default function BinPage() {
             </button>
          </div>
 
-         {/* Content */}
          <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6 bg-[#0f0f0f] scrollbar-thin scrollbar-thumb-[#2a2a2a] scrollbar-track-[#0f0f0f] hover:scrollbar-thumb-[#3a3a3a]">
             <div className="max-w-[1400px] mx-auto bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-6 sm:p-8">
                <pre

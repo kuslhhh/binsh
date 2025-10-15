@@ -2,6 +2,7 @@
 
 import Content from "@/components/ContentEditor";
 import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { submitBin } from "@/store/slices/binSlice";
 import { BinFormData } from "@/types/bin";
@@ -16,7 +17,7 @@ export default function Home() {
    const [formData, setFormData] = useState<BinFormData>({
       title: '',
       content: '',
-      language: 'plaintext',
+      languageSelected: 'plaintext',
       wrap_text: false,
       burn_after_read: false,
       expiry_choice: '24h',
@@ -43,15 +44,26 @@ export default function Home() {
             isSubmitting={loading}
          />
 
-         <div className="flex">
-            <div className="flex-5 h-[86vh]" >
-            <Content 
-            content={formData.content}
-            onChange={(content) => setFormData(prev => ({ ...prev, content }))}
-            />
+         <div className="flex h-[86vh]">
+            <div className="flex-5" >
+               <Content
+                  content={formData.content}
+                  onChange={(content) => setFormData(prev => ({ ...prev, content }))}
+               />
             </div>
             <div className="flex-2">
-               Sidebar
+               <Sidebar
+                  language={formData.languageSelected}
+                  onLanguageChange={(lang) => setFormData(prev => ({ ...prev, languageSelected: lang }))}
+                  expiry={formData.expiry_choice}
+                  onExpiryChange={(expiry) => setFormData(prev => ({ ...prev, expiry_choice: expiry }))}
+                  wrapText={formData.wrap_text}
+                  onWrapTextChange={(wrap) => setFormData(prev => ({ ...prev, wrap_text: wrap }))}
+                  burnAfterRead={formData.burn_after_read}
+                  onBurnAfterReadChange={(burn) => setFormData(prev => ({ ...prev, burn_after_read: burn }))}
+                  onSubmit={handleSubmit}
+                  isSubmitting={loading}
+               />
             </div>
          </div>
       </>

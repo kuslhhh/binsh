@@ -1,7 +1,7 @@
 export interface BinFormData {
   title: string;
   content: string;
-  language: string;
+  languageSelected: string;
   wrap_text: boolean;
   burn_after_read: boolean;
   expiry_choice: string;
