@@ -1,43 +1,37 @@
-'use client'
-
-import { useEffect, useState } from "react"
-import { Input } from "../ui/input";
+import React from 'react';
 
 export default function Navbar() {
-
-
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 50)
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
+    <nav
+      className="flex justify-between items-center w-full px-[22.4px] py-[17px] bg-no-repeat bg-bottom bg-[length:100%_1px] bg-[#0A0A0A]"
+      style={{
+        backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'100%25\\' height=\\'2\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cline x1=\\'0\\' y1=\\'0\\' x2=\\'100%25\\' y2=\\'0\\' stroke=\\'%235F5F5FFF\\' stroke-width=\\'4\\' stroke-dasharray=\\'5%2C12\\' stroke-linecap=\\'square\\' /%3E%3C/svg%3E')",
+      }}
+    >
+      <div className="px-2 flex items-center">
+        <input 
+          type="text" 
+          placeholder="Enter a title..." 
+          className="p-0 m-0 text-white bg-transparent border-none outline-none text-[3rem] font-black w-[calc(100%-2.8rem)]  opacity-100 animate-fadein font-custom whitespace-nowrap overflow-hidden text-ellipsis"     
+        />
+      </div>
 
-    <>
-
-
-      <nav className="relative w-full bg-[var(--color-background)]">
-        {/* Dashed SVG border line */}
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[url('data:image/svg+xml,%3Csvg%20width=\'100%25\'%20height=\'2\'%20xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cline%20x1=\'0\'%20y1=\'0\'%20x2=\'100%25\'%20y2=\'0\'%20stroke=\'%235F5F5FFF\'%20stroke-width=\'4\'%20stroke-dasharray=\'5%2C12\'%20stroke-linecap=\'square\'%20/%3E%3C/svg%3E')] bg-no-repeat bg-[length:100%_1px]" />
-
-        {/* Actual Navbar Content */}
-        <div className="px-6 py-5 flex justify-between items-center">
-          <Input className="text-4xl font-semibold text-[var(--color-text-secondary)]">
-            Enter a title...
-          </Input>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-white underline underline-offset-4 text-sm">
-              About
-            </a>
-            <button className="px-4 py-2 bg-white text-black rounded-2xl text-sm font-semibold flex items-center gap-1">
-              <span>＋</span> New Paste
-            </button>
-          </div>
-        </div>
-      </nav>
-    </>
-
-  )
+      <div className="flex items-center px-2 gap-7">
+        <a 
+          href="/about" 
+          className="text-white font-[16px] underline hover:text-gray-300 transition-colors"
+          
+        >
+          about
+        </a>
+        
+        <button 
+          className="flex items-center border-none cursor-pointer text-no-underline bg-white text-black h-12 text-[1.05rem] py-2 px-[1.2rem] font-semibold gap-[0.8rem] rounded-[15px] opacity-100 [font-variant-ligatures:none] animate-[fadein_0.3s_ease_forwards]"
+        >
+          <span>+</span>
+          New Bin
+        </button>
+      </div>
+    </nav>
+  );
 }
