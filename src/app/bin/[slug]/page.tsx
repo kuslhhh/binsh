@@ -19,8 +19,12 @@ export default function BinPage() {
          try {
             const data = await getBin(slug);
             setBinData(data);
-         } catch (err: any) {
-            setError(err.message || 'Failed to load bin');
+         } catch (err) {
+            if(err instanceof Error) {
+               setError(err.message)
+            } else {
+               setError("Failed to load bin")
+            }
          } finally {
             setLoading(false);
          }

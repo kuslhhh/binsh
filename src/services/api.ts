@@ -19,12 +19,12 @@ export async function createBin(data: BinFormData): Promise<BinResponse> {
   return response.json();
 }
 
-export async function getBin(slug: string): Promise<any> {
+export async function getBin(slug: string): Promise<BinFormData> {
   const response = await fetch(`${API_BASE_URL}/bin/${slug}`);
   
   if (!response.ok) {
     throw new Error('Failed to fetch bin');
   }
 
-  return response.json();
+  return response.json() as Promise<BinFormData>;
 }
