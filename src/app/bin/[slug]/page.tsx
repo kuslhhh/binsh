@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getBin } from '@/services/api';
-import Link from 'next/link';
+import { BinFormData } from '@/types/bin';
 
 export default function BinPage() {
    const router = useRouter()
    const params = useParams();
    const slug = params.slug as string;
-   const [binData, setBinData] = useState<any>(null);
+   const [binData, setBinData] = useState<BinFormData | null>(null);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState<string | null>(null);
    const [copied, setCopied] = useState(false);

@@ -17,7 +17,7 @@ export default function Home() {
    const [formData, setFormData] = useState<BinFormData>({
       title: '',
       content: '',
-      languageSelected: 'plaintext',
+      language: 'plaintext',
       wrap_text: false,
       burn_after_read: false,
       expiry_choice: '24h',
@@ -53,7 +53,7 @@ export default function Home() {
             </div>
             <div className="flex-2">
                <Sidebar
-                  language={formData.languageSelected}
+                  language={formData.language}
                   onLanguageChange={(lang) => setFormData(prev => ({ ...prev, languageSelected: lang }))}
                   expiry={formData.expiry_choice}
                   onExpiryChange={(expiry) => setFormData(prev => ({ ...prev, expiry_choice: expiry }))}
