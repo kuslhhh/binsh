@@ -46,6 +46,8 @@ export default function Sidebar({
     { value: '31d', label: '31d' },
   ];
 
+  // todo : change button colour
+
   return (
     <div className="flex flex-col h-full w-full bg-[#1a1a1a] overflow-hidden">
       <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-6 scrollbar-thin scrollbar-thumb-[#2a2a2a] scrollbar-track-transparent">
